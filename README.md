@@ -13,6 +13,9 @@
 
 The Nakanishi Dental Lab File Management System is a light tool designed to search and manage dental case files and STL files. It provides functionalities for searching, copying, and organizing files, streamlining the workflow for dental lab professionals.
 
+![image](https://github.com/user-attachments/assets/5ae33485-8c7f-48f9-8bac-5cce04da110e)
+
+
 ## Features
 
 ### Search Functionality
