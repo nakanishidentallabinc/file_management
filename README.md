@@ -1,46 +1,53 @@
-# file_management
+# Nakanishi Dental Lab File Management System
 
-# Overview
-This project is a comprehensive file management system developed for Nakanishi Dental Lab, Inc. It provides various functionalities to search, copy, and manage dental case files and STL files efficiently.
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Requirements](#requirements)
+- [Copyright](#copyright)
 
-# Features
-Search Functionality
-Search by case numbers
-Search by last name
-Pan search for folders
-List all folders in a directory
-List all ZIP files in a directory
-File Operations
-Copy entire folders with all files
-Copy only STL files
-Copy and rename STL files (adding '_copy' suffix)
-Copy and rename STL files and folders while maintaining structure
-Case Management
-Check for missing cases
-Extract ZIP files
-User Interface
-Interactive command-line interface
-User-friendly prompts for input
-Project Structure
-The project consists of several Python modules, each responsible for specific functionalities:
-main.py: The main entry point of the application
-folder_manager.py: Manages folder operations
-folder_search.py: Handles folder search operations
-input_handler.py: Manages user input
-copy_stl.py: Handles STL file operations
-checking_missing_cases.py: Checks for missing case files
-extract_zip.py: Extracts ZIP files
-Usage
-Run main.py to start the application.
-Follow the on-screen prompts to perform various operations.
-Choose from the available options to search, copy, or manage files.
-Requirements
-Python 3.x
-No additional libraries required (uses standard library modules)
-Installation
-Clone the repository or download the source code.
-Ensure Python 3.x is installed on your system.
-Navigate to the project directory in your terminal or command prompt.
-Run python main.py to start the application.
-Copyright
-Copyright (c) Nakanishi Dental Lab, Inc. All rights reserved. 11/8/2024
+## Overview
+
+The Nakanishi Dental Lab File Management System is a comprehensive tool designed to efficiently manage dental case files and STL files. It provides a range of functionalities for searching, copying, and organizing files, streamlining the workflow for dental lab professionals.
+
+## Features
+
+### Search Functionality
+- Search by case numbers
+- Search by last name
+- Pan search for folders
+- List all folders in a directory
+- List all ZIP files in a directory
+
+### File Operations
+- Copy entire folders with all files
+- Copy only STL files
+- Copy and rename STL files (adding '_copy' suffix)
+- Copy and rename STL files and folders while maintaining structure
+
+### Case Management
+- Check for missing cases
+- Extract ZIP files
+
+### User Interface
+- Interactive command-line interface
+- User-friendly prompts for input
+
+## Project Structure
+
+The project is organized into several Python modules:
+
+- `main.py`: Main entry point of the application
+- `folder_manager.py`: Manages folder operations
+- `folder_search.py`: Handles folder search operations
+- `input_handler.py`: Manages user input
+- `copy_stl.py`: Handles STL file operations
+- `checking_missing_cases.py`: Checks for missing case files
+- `extract_zip.py`: Extracts ZIP files
+
+## Installation
+
+1. Clone the repository:
