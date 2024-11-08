@@ -59,9 +59,11 @@ The project is organized into several Python modules:
 ## Usage
 
 1. Run the main script:
-    python3 main.py
-2. Follow the on-screen prompts to perform various operations.
-3. Choose from the available options to search, copy, or manage files.
+
+   python3 main.py
+
+3. Follow the on-screen prompts to perform various operations.
+4. Choose from the available options to search, copy, or manage files.
 
 ## Requirements
 
