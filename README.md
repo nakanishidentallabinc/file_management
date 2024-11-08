@@ -54,7 +54,7 @@ The project is organized into several Python modules:
 
   git clone https://github.com/nakanishi-dental-lab/file-management-system.git
 
-3. Navigate to the project directory:
+2. Navigate to the project directory:
 
   cd file-management
 
