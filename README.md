@@ -51,3 +51,27 @@ The project is organized into several Python modules:
 ## Installation
 
 1. Clone the repository:
+  git clone https://github.com/nakanishi-dental-lab/file-management-system.git
+
+2. Navigate to the project directory:
+  cd file-management
+
+## Usage
+
+1. Run the main script:
+    python3 main.py
+2. Follow the on-screen prompts to perform various operations.
+3. Choose from the available options to search, copy, or manage files.
+
+## Requirements
+
+- Python 3.x
+- No additional libraries required (uses standard library modules)
+
+## Copyright
+
+Copyright © 2024 Nakanishi Dental Lab, Inc. All rights reserved.
+
+---
+
+For more detailed information about each module and its functions, please refer to the individual Python files and their docstrings.
