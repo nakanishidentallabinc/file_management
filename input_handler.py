@@ -34,14 +34,16 @@ class InputHandler:
         return target_directory
 
     def get_user_choice(self):
-        print("\nHow would you like to proceed?")
+        print("\nPlease select an option:")
         print("1. Search by case numbers")
-        print("2. Search by last name")
-        print("3. Pan search for folders")
-        print("4. List all folders in the directory")
-        print("5. List all ZIP files in the directory")
+        print("2. Search by name")
+        print("3. Pan search")
+        print("4. List all folders")
+        print("5. Extract ZIP files")
         print("6. Check for missing cases")
-        return input("Enter your choice (1/2/3/4/5/6): ").strip()
+        print("7. View file counts for a specific day")
+        return input("Enter your choice (1-7): ")
+
 
     def get_search_terms(self):
         search_terms_input = input("Enter the names or substrings to search for (separated by commas): ")

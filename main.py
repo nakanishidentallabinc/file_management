@@ -26,6 +26,19 @@ def monitor_directory(path, log_file):
     observer.start()
     return observer
 
+def get_file_counts_for_day(log_file, date):
+    counts = {'created': 0, 'modified': 0, 'deleted': 0}
+    with open(log_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            if date in line:
+                if "Created" in line:
+                    counts['created'] += 1
+                elif "Modified" in line:
+                    counts['modified'] += 1
+                elif "Deleted" in line:
+                    counts['deleted'] += 1
+    return counts
+
 def main():
     # Set up logging
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -43,7 +56,10 @@ def main():
     
     # Start monitoring the directory
     directory_to_watch = r"\\NAKA-APP03\3Shape Dental System Orders\ManufacturingDir"
-    observer = monitor_directory(directory_to_watch, log_file)
+    file_handler = FileHandler(log_file)
+    observer = Observer()
+    observer.schedule(file_handler, directory_to_watch, recursive=True)
+    observer.start()
     print(f"Started monitoring directory: {directory_to_watch}")
     print(f"File tracking log will be saved to: {log_file}")
 
@@ -77,6 +93,16 @@ def main():
                     case_numbers = input_handler.get_case_numbers()
                     case_checker.find_missing_cases(source_directory, case_numbers)
                     continue
+
+                elif choice == '7':
+                    date = input("Enter the date (YYYY-MM-DD) to view file counts: ")
+                    counts = get_file_counts_for_day(log_file, date)
+                    print(f"File counts for {date}:")
+                    print(f"Created: {counts['created']}")
+                    print(f"Modified: {counts['modified']}")
+                    print(f"Deleted: {counts['deleted']}")
+                    continue
+
                 else:
                     print("Invalid choice. Please enter 1, 2, 3, 4, 5, or 6.")
                     continue
@@ -107,11 +133,9 @@ def main():
                 print(f"An error occurred: {str(e)}")
 
             if not input("\nWould you like to perform another search in the same directory? (y/n): ").lower().startswith('y'):
-                if not input("Would you like to change the source directory? (y/n): ").lower().startswith('y'):
-                    print("Thank you for using the Nakanishi Dental Lab File Management System. Goodbye!")
-                    break
-                else:
                     source_directory = input_handler.get_source_directory()
+                    continue
+
 
     except KeyboardInterrupt:
         pass
