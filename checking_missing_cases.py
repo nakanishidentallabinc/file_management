@@ -8,13 +8,14 @@ Copyright (c) Nakanishi Dental Lab, Inc. All rights reserved. 11/8/2024
 '''
 import os
 
+# Modified CaseChecker class
 class CaseChecker:
     def find_missing_cases(self, directory_path, case_numbers):
         folder_map = self._get_folder_map(directory_path)
         results = self._search_folders(folder_map, case_numbers)
         found_case_numbers = self._extract_case_numbers(results)
         missing_cases = set(case_numbers) - set(found_case_numbers)
-        self._display_results(missing_cases)
+        return missing_cases, found_case_numbers
 
     def _get_folder_map(self, directory_path):
         return {folder_name: os.path.join(directory_path, folder_name)
@@ -32,14 +33,4 @@ class CaseChecker:
             parts = folder.split('-')
             if len(parts) > 1:
                 found_case_numbers.append(parts[1])
-            else:
-                print(f"Warning: Folder '{folder}' does not follow expected naming convention.")
         return found_case_numbers
-
-    def _display_results(self, missing_cases):
-        if missing_cases:
-            print("Missing case numbers:")
-            for case in missing_cases:
-                print(case)
-        else:
-            print("No missing cases.")
