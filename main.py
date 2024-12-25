@@ -9,14 +9,40 @@ Copyright (c) Nakanishi Dental Lab, Inc. All rights reserved. 11/8/2024
 
 import logging
 import os
+import time
+from watchdog.observers import Observer
 from folder_manager import FolderManager
 from folder_search import FolderSearcher
 from input_handler import InputHandler
 from copy_stl import STLFileHandler
 from checking_missing_cases import CaseChecker
 from extract_zip import ZipExtractor
+from file_monitoring import FileHandler
+
+def monitor_directory(path, log_file):
+    event_handler = FileHandler(log_file)
+    observer = Observer()
+    observer.schedule(event_handler, path, recursive=True)
+    observer.start()
+    return observer
+
+def get_file_counts_for_day(log_file, date):
+    counts = {'created': 0, 'modified': 0, 'deleted': 0}
+    with open(log_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            if date in line:
+                if "Created" in line:
+                    counts['created'] += 1
+                elif "Modified" in line:
+                    counts['modified'] += 1
+                elif "Deleted" in line:
+                    counts['deleted'] += 1
+    return counts
 
 def main():
+    # Set up logging
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file = os.path.join(script_dir, 'file_tracking.log')
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     
     input_handler = InputHandler()
@@ -28,67 +54,94 @@ def main():
 
     print("Welcome to the Nakanishi Dental Lab File Management System!")
     
-    while True:
-        try:
-            source_directory = input_handler.get_source_directory()
-            choice = input_handler.get_user_choice()
+    # Start monitoring the directory
+    directory_to_watch = r"\\NAKA-APP03\3Shape Dental System Orders\ManufacturingDir"
+    file_handler = FileHandler(log_file)
+    observer = Observer()
+    observer.schedule(file_handler, directory_to_watch, recursive=True)
+    observer.start()
+    print(f"Started monitoring directory: {directory_to_watch}")
+    print(f"File tracking log will be saved to: {log_file}")
 
-            if choice == '1':
-                case_numbers = input_handler.get_case_numbers()
-                found_folders = folder_searcher.search_by_case_numbers(source_directory, case_numbers)
-                case_checker.find_missing_cases(source_directory, case_numbers)
-            elif choice == '2':
-                search_terms = input_handler.get_search_terms()
-                found_folders = folder_searcher.search_by_name(source_directory, search_terms)
-            elif choice == '3':
-                query = input_handler.get_search_query()
-                found_folders = folder_searcher.pan_search(source_directory, query)
-            elif choice == '4':
-                folder_manager.list_all_folders(source_directory)
-                continue
-            elif choice == '5':
-                zip_files = folder_manager.list_zip_files(source_directory)
-                if zip_files:
-                    target_directory = input_handler.get_target_directory()
-                    for zip_file in zip_files:
-                        zip_extractor.extract_zip_file(os.path.join(source_directory, zip_file), target_directory)
-                continue
-            elif choice == '6':
-                case_numbers = input_handler.get_case_numbers()
-                case_checker.find_missing_cases(source_directory, case_numbers)
-                continue
-            else:
-                print("Invalid choice. Please enter 1, 2, 3, 4, 5, or 6.")
-                continue
+    try:
+        source_directory = input_handler.get_source_directory()
+        while True:
+            try:
+                choice = input_handler.get_user_choice()
 
-            if found_folders:
-                print("\nFound folders/files:")
-                for name, path in found_folders.items():
-                    print(f"{name}: {path}")
+                if choice == '1':
+                    case_numbers = input_handler.get_case_numbers()
+                    found_folders = folder_searcher.search_by_case_numbers(source_directory, case_numbers)
+                    case_checker.find_missing_cases(source_directory, case_numbers)
+                elif choice == '2':
+                    search_terms = input_handler.get_search_terms()
+                    found_folders = folder_searcher.search_by_name(source_directory, search_terms)
+                elif choice == '3':
+                    query = input_handler.get_search_query()
+                    found_folders = folder_searcher.pan_search(source_directory, query)
+                elif choice == '4':
+                    folder_manager.list_all_folders(source_directory)
+                    continue
+                elif choice == '5':
+                    zip_files = folder_manager.list_zip_files(source_directory)
+                    if zip_files:
+                        target_directory = input_handler.get_target_directory()
+                        for zip_file in zip_files:
+                            zip_extractor.extract_zip_file(os.path.join(source_directory, zip_file), target_directory)
+                    continue
+                elif choice == '6':
+                    case_numbers = input_handler.get_case_numbers()
+                    case_checker.find_missing_cases(source_directory, case_numbers)
+                    continue
 
-                target_directory = input_handler.get_target_directory()
-                action_choice = input_handler.get_action_choice()
+                elif choice == '7':
+                    date = input("Enter the date (YYYY-MM-DD) to view file counts: ")
+                    counts = get_file_counts_for_day(log_file, date)
+                    print(f"File counts for {date}:")
+                    print(f"Created: {counts['created']}")
+                    print(f"Modified: {counts['modified']}")
+                    print(f"Deleted: {counts['deleted']}")
+                    continue
 
-                if action_choice == '1':
-                    folder_manager.copy_contents(target_directory, found_folders)
-                elif action_choice == '2':
-                    stl_handler.copy_stl_files(list(found_folders.values()), target_directory)
-                elif action_choice == '3':
-                    stl_handler.copy_stl_files(list(found_folders.values()), target_directory, rename=True)
-                elif action_choice == '4':
-                    stl_handler.rename_stl_files_with_structure(list(found_folders.values()), target_directory)
                 else:
-                    print("Invalid choice. Please enter 1, 2, 3, or 4.")
-            else:
-                print("No folders found based on your search criteria.")
+                    print("Invalid choice. Please enter 1, 2, 3, 4, 5, or 6.")
+                    continue
 
-        except Exception as e:
-            logging.error(f"An error occurred: {str(e)}")
-            print(f"An error occurred: {str(e)}")
+                if found_folders:
+                    print("\nFound folders/files:")
+                    for name, path in found_folders.items():
+                        print(f"{name}: {path}")
 
-        if not input("\nWould you like to perform another operation? (y/n): ").lower().startswith('y'):
-            print("Thank you for using the Nakanishi Dental Lab File Management System. Goodbye!")
-            break
+                    target_directory = input_handler.get_target_directory()
+                    action_choice = input_handler.get_action_choice()
+
+                    if action_choice == '1':
+                        folder_manager.copy_contents(target_directory, found_folders)
+                    elif action_choice == '2':
+                        stl_handler.copy_stl_files(list(found_folders.values()), target_directory)
+                    elif action_choice == '3':
+                        stl_handler.copy_stl_files(list(found_folders.values()), target_directory, rename=True)
+                    elif action_choice == '4':
+                        stl_handler.rename_stl_files_with_structure(list(found_folders.values()), target_directory)
+                    else:
+                        print("Invalid choice. Please enter 1, 2, 3, or 4.")
+                else:
+                    print("No folders found based on your search criteria.")
+
+            except Exception as e:
+                logging.error(f"An error occurred: {str(e)}")
+                print(f"An error occurred: {str(e)}")
+
+            if not input("\nWould you like to perform another search in the same directory? (y/n): ").lower().startswith('y'):
+                    source_directory = input_handler.get_source_directory()
+                    continue
+
+
+    except KeyboardInterrupt:
+        pass
+    finally:
+        observer.stop()
+        observer.join()
 
 if __name__ == "__main__":
     main()
