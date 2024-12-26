@@ -1,53 +1,64 @@
 # Nakanishi Dental Lab File Management System
 
-## Overview
-
-The Nakanishi Dental Lab File Management System is a comprehensive tool designed to streamline file operations, case management, and monitoring for dental laboratories. This application provides an intuitive graphical user interface for efficient handling of dental case files, STL file management, and automated file monitoring.
+This application is a comprehensive file management system designed for Nakanishi Dental Lab, Inc. It provides various functionalities to manage dental case files, including searching, copying, renaming, and monitoring file operations.
 
 ## Features
 
-- **File Search**: Easily search for folders and files within a specified source directory.
-- **Case Checking**: Identify missing cases by comparing input case numbers against existing files.
-- **File Operations**: Perform various actions such as copying all files, copying STL files, and renaming structures.
-- **ZIP Extraction**: Extract ZIP files from a source directory to a target location.
-- **File Monitoring**: Automatically track file changes in a specified directory.
-- **User-Friendly Interface**: Intuitive GUI with clear sections for different functionalities.
+- **File Search**: Search for case files using case numbers, names, or custom queries.
+- **File Operations**: Copy, rename, and manage STL files and folder structures.
+- **Case Checking**: Identify missing cases from a list of case numbers.
+- **ZIP Extraction**: Extract ZIP files found in the source directory.
+- **File Monitoring**: Monitor a specified directory for file changes (creation, modification, deletion).
+- **File Statistics**: View file operation counts for a specific date.
 
 ## Installation
 
-1. Ensure you have Python 3.x installed on your system.
+1. Clone the repository:
+   ```
+   git clone https://github.com/nakanishidentallabinc/file_management.git
+   ```
+
 2. Install the required dependencies:
    ```
    pip install PyQt5 watchdog
    ```
-3. Clone or download the repository to your local machine.
 
 ## Usage
 
-1. Run the main script:
-   ```
-   python main.py
-   ```
-2. Use the interface to select source directories, perform searches, and execute file operations.
-3. Monitor the status bar for file monitoring updates and operation results.
+Run the main script to start the application:
 
-## Key Components
+```
+python main.py
+```
 
-- **MainWindow**: The primary application window containing all UI elements and core functionality.
-- **FolderSearcher**: Handles directory searches based on user input.
-- **FolderManager**: Manages folder operations like copying contents.
-- **STLFileHandler**: Specializes in STL file operations, including copying and renaming.
-- **CaseChecker**: Verifies the presence of case files and reports missing cases.
-- **ZipExtractor**: Manages the extraction of ZIP files.
-- **FileMonitorThread**: Runs a background thread for continuous file monitoring.
+The application will launch a graphical user interface (GUI) with the following main features:
 
-## Contributing
+- Select source and target directories
+- Search for files and folders
+- Perform various file operations (copy, rename)
+- Check for missing cases
+- Extract ZIP files
+- Monitor file changes in a specified directory
 
-Contributions to improve the Nakanishi Dental Lab File Management System are welcome. Please follow these steps:
+## File Structure
 
-1. Fork the repository.
-2. Create a new branch for your feature.
-3. Commit your changes.
-4. Push to the branch.
-5. Create a new Pull Request.
+- `main.py`: The main entry point of the application, containing the GUI implementation.
+- `folder_manager.py`: Handles folder operations like copying and listing.
+- `folder_search.py`: Implements file and folder search functionality.
+- `input_handler.py`: Manages user input for various operations.
+- `copy_stl.py`: Handles STL file operations.
+- `checking_missing_cases.py`: Implements case checking functionality.
+- `extract_zip.py`: Manages ZIP file extraction.
+- `file_monitoring.py`: Implements file monitoring using watchdog.
+
+
+## License
+
+This project is licensed under the MIT License
+
+## Acknowledgments
+
+- PyQt5 for the GUI framework
+- watchdog for file system monitoring
+
 
