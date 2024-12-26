@@ -1,84 +1,53 @@
 # Nakanishi Dental Lab File Management System
 
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Requirements](#requirements)
-- [Copyright](#copyright)
-
 ## Overview
 
-The Nakanishi Dental Lab File Management System is a light tool designed to search and manage dental case files and STL files. It provides functionalities for searching, copying, and organizing files, streamlining the workflow for dental lab professionals.
-
-![image](https://github.com/user-attachments/assets/5ae33485-8c7f-48f9-8bac-5cce04da110e)
-
+The Nakanishi Dental Lab File Management System is a comprehensive tool designed to streamline file operations, case management, and monitoring for dental laboratories. This application provides an intuitive graphical user interface for efficient handling of dental case files, STL file management, and automated file monitoring.
 
 ## Features
 
-### Search Functionality
-- Search by case numbers
-- Search by last name
-- Pan search for folders
-- List all folders in a directory
-- List all ZIP files in a directory
-
-### File Operations
-- Copy entire folders with all files
-- Copy only STL files
-- Copy and rename STL files (adding '_copy' suffix)
-- Copy and rename STL files and folders while maintaining structure
-
-### Case Management
-- Check for missing cases
-- Extract ZIP files
-
-### User Interface
-- Interactive command-line interface
-- User-friendly prompts for input
-
-## Project Structure
-
-The project is organized into several Python modules:
-
-- `main.py`: Main entry point of the application
-- `folder_manager.py`: Manages folder operations
-- `folder_search.py`: Handles folder search operations
-- `input_handler.py`: Manages user input
-- `copy_stl.py`: Handles STL file operations
-- `checking_missing_cases.py`: Checks for missing case files
-- `extract_zip.py`: Extracts ZIP files
+- **File Search**: Easily search for folders and files within a specified source directory.
+- **Case Checking**: Identify missing cases by comparing input case numbers against existing files.
+- **File Operations**: Perform various actions such as copying all files, copying STL files, and renaming structures.
+- **ZIP Extraction**: Extract ZIP files from a source directory to a target location.
+- **File Monitoring**: Automatically track file changes in a specified directory.
+- **User-Friendly Interface**: Intuitive GUI with clear sections for different functionalities.
 
 ## Installation
 
-1. Clone the repository:
-
-  git clone https://github.com/nakanishi-dental-lab/file-management-system.git
-
-2. Navigate to the project directory:
-
-  cd file-management
+1. Ensure you have Python 3.x installed on your system.
+2. Install the required dependencies:
+   ```
+   pip install PyQt5 watchdog
+   ```
+3. Clone or download the repository to your local machine.
 
 ## Usage
 
 1. Run the main script:
+   ```
+   python main.py
+   ```
+2. Use the interface to select source directories, perform searches, and execute file operations.
+3. Monitor the status bar for file monitoring updates and operation results.
 
-   python3 main.py
+## Key Components
 
-3. Follow the on-screen prompts to perform various operations.
-4. Choose from the available options to search, copy, or manage files.
+- **MainWindow**: The primary application window containing all UI elements and core functionality.
+- **FolderSearcher**: Handles directory searches based on user input.
+- **FolderManager**: Manages folder operations like copying contents.
+- **STLFileHandler**: Specializes in STL file operations, including copying and renaming.
+- **CaseChecker**: Verifies the presence of case files and reports missing cases.
+- **ZipExtractor**: Manages the extraction of ZIP files.
+- **FileMonitorThread**: Runs a background thread for continuous file monitoring.
 
-## Requirements
+## Contributing
 
-- Python 3.x
-- No additional libraries required (uses standard library modules)
+Contributions to improve the Nakanishi Dental Lab File Management System are welcome. Please follow these steps:
 
-## Copyright
+1. Fork the repository.
+2. Create a new branch for your feature.
+3. Commit your changes.
+4. Push to the branch.
+5. Create a new Pull Request.
 
-Copyright © 2024 Nakanishi Dental Lab, Inc. All rights reserved.
-
----
-
-For more detailed information about each module and its functions, please refer to the individual Python files and their docstrings.
