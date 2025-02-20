@@ -5,6 +5,8 @@ The **Dental Lab File Management System** is a Python-based desktop application 
 
 ---
 
+![image](https://github.com/user-attachments/assets/d9a29108-1449-4953-ac04-244a14a16443)
+
 ## Features
 
 ### 1. Directory Monitoring
