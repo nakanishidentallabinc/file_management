@@ -1,4 +1,4 @@
-# Nakanishi Dental Lab File Management System
+#Dental Lab File Management System
 
 This application is a comprehensive file management system designed for Nakanishi Dental Lab, Inc. It provides various functionalities to manage dental case files, including searching, copying, renaming, and monitoring file operations.
 
