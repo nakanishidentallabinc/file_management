@@ -53,33 +53,71 @@ The intuitive GUI includes:
    pip install PyQt5 watchdog
    ```
 
+---
+
+## How It Works
+
+### Directory Monitoring
+The application uses the [Watchdog](https://pypi.org/project/watchdog/) library to monitor file events (creation, modification, deletion) in real time. Events are logged and displayed in the GUI.
+
+### GUI Components
+The application is built using [PyQt5](https://pypi.org/project/PyQt5/) and includes:
+1. **Source Directory Selection**: Choose the folder to monitor or perform actions on.
+2. **Search Input**: Enter keywords or case numbers to find specific folders/files.
+3. **Results Display**: View search results or missing cases in real-time.
+4. **Action Buttons**:
+   - Copy all files or only STL files.
+   - Rename STL files with or without structural modifications.
+5. **Case Checker**: Identify missing case numbers from a provided list.
+
+---
+
 ## Usage
 
-Run the main script to start the application:
+### Step-by-Step Instructions
 
-```
-python main.py
-```
+#### 1. Select Source Directory
+Click the "Select Source Directory" button and choose the folder you want to monitor or work with.
 
-The application will launch a graphical user interface (GUI) with the following main features:
+#### 2. Search for Cases
+Enter case numbers or keywords in the search bar and click "Search." The results will be displayed in the text area below.
 
-- Select source and target directories
-- Search for files and folders
-- Perform various file operations (copy, rename)
-- Check for missing cases
-- Extract ZIP files
-- Monitor file changes in a specified directory
+#### 3. Perform File Operations
+Use the action buttons to:
+- Copy all files or only STL files to a target directory.
+- Rename STL files based on your preferences.
 
-## File Structure
+#### 4. Extract ZIP Files
+Click "Extract ZIP" to extract all ZIP files from the source directory into a target folder.
 
-- `main.py`: The main entry point of the application, containing the GUI implementation.
-- `folder_manager.py`: Handles folder operations like copying and listing.
-- `folder_search.py`: Implements file and folder search functionality.
-- `input_handler.py`: Manages user input for various operations.
-- `copy_stl.py`: Handles STL file operations.
-- `checking_missing_cases.py`: Implements case checking functionality.
-- `extract_zip.py`: Manages ZIP file extraction.
-- `file_monitoring.py`: Implements file monitoring using watchdog.
+#### 5. Check for Missing Cases
+Input a list of case numbers (comma-separated) into the "Case Checker" section and click "Check Cases." Missing cases will be displayed below.
+
+#### 6. Monitor Files in Real-Time
+The application automatically monitors changes (creation, modification, deletion) in the specified directory and displays updates in real-time.
+
+---
+
+## Code Structure
+
+The project is modularized into several components:
+
+| Module                  | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `folder_manager.py`     | Handles folder operations like copying contents. |
+| `folder_search.py`      | Implements search functionality by keywords/cases.|
+| `copy_stl.py`           | Manages STL file-specific operations like renaming or copying. |
+| `checking_missing_cases.py` | Identifies missing cases based on input criteria. |
+| `extract_zip.py`        | Extracts ZIP files from source to target directories. |
+| `file_monitoring.py`    | Monitors real-time file events using Watchdog.   |
+
+---
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+1. Fork this repository.
+2. Create a feature branch:
 
 
 ## License
