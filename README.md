@@ -1,7 +1,6 @@
 # Dental Lab File Management System
 
-## Overview
-The **Dental Lab File Management System** is a Python-based desktop application designed to streamline file management workflows in dental labs. It offers a user-friendly GUI for monitoring directories, searching for cases, managing STL files, extracting ZIP files, and identifying missing case files. This tool is ideal for dental labs looking to improve efficiency and accuracy in handling digital case files.
+The Dental Lab File Management System is a Python-based application designed to assist dental labs in managing case files, STL files, and ZIP archives. It offers features like case checking, file copying, renaming, ZIP extraction, and real-time file monitoring.
 
 ---
 
@@ -41,19 +40,46 @@ The intuitive GUI includes:
 ### 6. Clear Missing Cases
 - Reset the missing cases display with a single click.
 
+---
+
+### GUI Overview
+The GUI includes the following functionalities:
+
+1. **Source Directory Selection**:
+   - Select the directory containing case files or STL files.
+
+2. **Case Checker**:
+   - Enter case numbers to check for missing cases in the selected directory.
+
+3. **File Operations**:
+   - Copy all folders.
+   - Copy STL files only.
+   - Rename STL files with `_copy` suffix.
+   - Rename STL files and maintain folder structures.
+
+4. **ZIP Extraction**:
+   - Extract ZIP files from the source directory to a target directory.
+
+5. **File Monitoring**:
+   - Monitor a specified directory for file events (creation, modification, deletion).
+
+## Features
+
+- **Case Checker**: Identify missing case numbers from a specified directory.
+- **STL File Management**: Copy and rename STL files while preserving folder structures.
+- **ZIP Extraction**: Extract ZIP files into organized directories.
+- **File Monitoring**: Monitor a directory for file creation, modification, or deletion events.
+- **GUI Interface**: User-friendly interface for seamless interaction with all features.
+
 ## Installation
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/nakanishidentallabinc/file_management.git
-   ```
+Clone the repository and install the required dependencies using `pip`.
 
-2. Install the required dependencies:
-   ```
-   pip install PyQt5 watchdog
-   ```
+git clone <repository_url>
+cd dental-lab-file-management
+pip install -r requirements.txt
 
----
+
 
 ## How It Works
 
@@ -123,10 +149,5 @@ Contributions are welcome! Please follow these steps:
 ## License
 
 This project is licensed under the MIT License
-
-## Acknowledgments
-
-- PyQt5 for the GUI framework
-- watchdog for file system monitoring
 
 
