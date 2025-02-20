@@ -1,15 +1,35 @@
 # Dental Lab File Management System
 
-This application is a comprehensive file management system designed for Nakanishi Dental Lab, Inc. It provides various functionalities to manage dental case files, including searching, copying, renaming, and monitoring file operations.
+## Overview
+The **Dental Lab File Management System** is a Python-based desktop application designed to streamline file management workflows in dental labs. It offers a user-friendly GUI for monitoring directories, searching for cases, managing STL files, extracting ZIP files, and identifying missing case files. This tool is ideal for dental labs looking to improve efficiency and accuracy in handling digital case files.
+
+---
 
 ## Features
 
-- **File Search**: Search for case files using case numbers, names, or custom queries.
-- **File Operations**: Copy, rename, and manage STL files and folder structures.
-- **Case Checking**: Identify missing cases from a list of case numbers.
-- **ZIP Extraction**: Extract ZIP files found in the source directory.
-- **File Monitoring**: Monitor a specified directory for file changes (creation, modification, deletion).
-- **File Statistics**: View file operation counts for a specific date.
+### 1. Directory Monitoring
+- Automatically detects file creation, modification, and deletion in a specified directory.
+- Real-time updates displayed in the GUI.
+
+### 2. Case Search
+- Search for specific case folders or files using keywords or case numbers.
+- Displays search results with file paths for easy navigation.
+
+### 3. File Operations
+- **Copy All Files**: Copy all files from the source directory to a target directory.
+- **Copy STL Files**: Copy only STL files to a target directory.
+- **Rename STL Files**: Rename STL files with optional structural modifications.
+- **Rename Structure**: Apply specific naming conventions to STL files.
+
+### 4. ZIP File Extraction
+- Extract ZIP files from the source directory to a target location with one click.
+
+### 5. Case Checker
+- Input a list of case numbers to identify missing cases in the source directory.
+- Displays missing cases in a dedicated section of the GUI.
+
+### 6. Clear Missing Cases
+- Reset the missing cases display with a single click.
 
 ## Installation
 
